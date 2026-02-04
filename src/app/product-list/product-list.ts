@@ -2,13 +2,15 @@ import {Component, inject, signal} from '@angular/core';
 import {ProductService} from '../services/ProductService';
 import {Product} from '../models/product';
 import {ProductAlerts} from '../product-alerts/product-alerts';
+import {RouterLink} from '@angular/router';
 
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   imports: [
-    ProductAlerts
+    ProductAlerts,
+    RouterLink
   ],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',

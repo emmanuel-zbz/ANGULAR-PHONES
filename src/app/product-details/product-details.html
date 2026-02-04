@@ -1,0 +1,10 @@
+<h2>Product Details</h2>
+
+@if (product(); as p) {
+  <div>
+    <h3>{{ p.name }}</h3>
+    <h3>{{ p.price | currency }}</h3>
+    <h3>{{ p.description }}</h3>
+    <button class="button" (click)="addToCart(p)">Buy</button>
+  </div>
+}

@@ -1,0 +1,19 @@
+<h3>Shipping prices</h3>
+<div>
+  <!--
+
+  El async pipe sirve para suscribirse a los observables y poder manipularlos
+
+  Shipping cost es un observable, no el dato que observa. Es decir, es un observable del array, no el array.
+
+  -->
+  @for (shipping of shippingCosts | async; track $index) {
+    <div class="shipping-item">
+      <span> {{ shipping.type }}</span>
+      <span>{{ shipping.price }}</span>
+    </div>
+
+  }
+
+</div>
+

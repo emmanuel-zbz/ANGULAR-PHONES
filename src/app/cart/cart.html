@@ -1,0 +1,41 @@
+<h2>Cart</h2>
+
+<p>
+  <a routerLink="/shipping">Shipping Prices</a>
+</p>
+
+@if (items()) {
+  <div>
+    @for (item of items(); track item.id) {
+      <div class="cart-item">
+        <span>{{ item.name }}</span>
+        <span>{{ item.price | currency }}</span>
+      </div>
+    }
+  </div>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">
+        Name
+      </label>
+      <input id="name" type="text" formControlName="name">
+    </div>
+
+    <div>
+      <label for="address">
+        Address
+      </label>
+      <input id="address" type="text" formControlName="address">
+    </div>
+
+    <button class="button" type="submit">Purchase</button>
+
+
+    <button class=" button" type="submit">Purchase</button>
+
+  </form>
+
+}
+
+

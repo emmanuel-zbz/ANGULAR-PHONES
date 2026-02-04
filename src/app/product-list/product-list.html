@@ -4,7 +4,19 @@
 
     <div>
       <h3>
-        <a [title]="producto.name + ' details' ">{{ producto.name }}</a>
+        <a [title]="producto.name + ' details' " [routerLink]="['/products', producto.id]">{{ producto.name }}</a>
+        <!--
+             En el routerLink vemos como se usan variables para definir una ruta.
+
+             Cuando routerLink esta entre corchetes, Angular espera evaluar su parte izquierda, no cogerla directamente.
+             En este caso, su parte izquierda es un array, que contiene el formato que PREVIAMENTE definimos en routes.ts
+
+             '/products' se coge sin mas, pero angular luego añade el valor de /producto.id
+
+             Sabiendo esto, podemos entender que funcionaria igual que [routerLink]="/products/{{producto.id}}".
+             Sin embargo, por estandares de seguridad y funcionalidad de escape de caracteres nativo de Angular,
+             Es mejor y mas conveniente adoptar la metodologia de Arrays cuando se trabajen con variables.
+        -->
       </h3>
       @if (producto.description) {
         <p>Description: {{ producto.description }}</p>
@@ -13,8 +25,8 @@
       <app-product-alerts [product]="producto" (notify)="onNotify()">
         <!--
 
-        Como se aprecia aqui, [product] es la variable que tiene el hijo, y donde vamos a recibir los datos.
-        producto es la variable proveniente del padre.
+        Como se aprecia aqui, [product] es la variable/atributo que tiene el hijo, y donde vamos a recibir los datos.
+        producto (que resulta ser la informacion individual de un producto) es una variable proveniente del padre.
 
         El paso de datos es unidireccional, de padre a hijo.
 
@@ -22,7 +34,7 @@
 
         <!--
 
-             Como mencioné en el HTML del hijo. Aqui el padre debe saber COMO reaccionar al evento. Lo que vaya entre parentesis es un evento.
+             Como mencioné en el HTML del hijo, aqui el padre debe saber COMO reaccionar al evento. Lo que vaya entre parentesis es un evento.
              (notify) es el evento que se dispara en el padre despues de que en el HTML del hijo se dispare el evento y se envie un emit().
 
              onNotify() es un metodo que contendra la logica del comportamiento deseado una vez se dispare el evento notify que hemos creado.
