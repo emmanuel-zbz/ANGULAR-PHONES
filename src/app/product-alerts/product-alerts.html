@@ -1,0 +1,21 @@
+@if (product().price > 700) {
+  <div>
+    <button style="margin-top: 8px" type="button" (click)="notify.emit()">Notify me</button>
+  </div>
+
+}
+
+<!--
+Estos datos los recibe del padre, ya que hemos declarado que este atributo es un input.
+La asignación se completa en el HTML donde aparecen padre e hijo. Mirar product-list.html
+-->
+
+
+<!--
+La parte del evento se gestiona en el hijo. No hace falta recibir datos ni nada. Basta con declarar que: dado el siguiente evento (en este caso click)
+se emita nuestra variable (en este caso "notify") con .emit()
+
+Una vez hecho eso, en el HTML del PADRE debemos declarar este evento para que el padre sepa reaccionar a el.
+
+Ahora bien, lo que pase una vez que el output (notify) se emita y llegue al padre, DEBE GESTIONARSE EN EL PADRE (la clase del componente) el comportamiento deseado.
+-->

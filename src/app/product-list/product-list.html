@@ -1,0 +1,37 @@
+<h2>Products</h2>
+<div>
+  @for (producto of products(); track producto.id) {
+
+    <div>
+      <h3>
+        <a [title]="producto.name + ' details' ">{{ producto.name }}</a>
+      </h3>
+      @if (producto.description) {
+        <p>Description: {{ producto.description }}</p>
+      }
+      <button class="button " (click)="share()">Share</button>
+      <app-product-alerts [product]="producto" (notify)="onNotify()">
+        <!--
+
+        Como se aprecia aqui, [product] es la variable que tiene el hijo, y donde vamos a recibir los datos.
+        producto es la variable proveniente del padre.
+
+        El paso de datos es unidireccional, de padre a hijo.
+
+         -->
+
+        <!--
+
+             Como mencioné en el HTML del hijo. Aqui el padre debe saber COMO reaccionar al evento. Lo que vaya entre parentesis es un evento.
+             (notify) es el evento que se dispara en el padre despues de que en el HTML del hijo se dispare el evento y se envie un emit().
+
+             onNotify() es un metodo que contendra la logica del comportamiento deseado una vez se dispare el evento notify que hemos creado.
+
+             El paso de eventos es de hijo a padre, el inverso del paso de datos.
+
+         -->
+      </app-product-alerts>
+    </div>
+  }
+</div>
+
