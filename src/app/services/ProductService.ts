@@ -15,10 +15,14 @@ export class ProductService {
     return this.http.get<Product[]>('/assets/products.json');
   }
 
-  getProductoById(idBuscado: number){
+  getProductoById(idBuscado: number) {
     return this.getProducts()
       .pipe(
-        map(allProducts => allProducts.find( p => p.id === idBuscado)));
+        map(allProducts => allProducts.find(p => p.id === idBuscado)));
+  }
+
+  getProductStockage(idBuscado: number) {
+    return this.getProductoById(idBuscado).pipe(producto => producto);
   }
 
   /**
@@ -47,10 +51,12 @@ export class ProductService {
  *
  * La variable http tiene los verbos de HTTP (obvio). -> EL METODO .get DEVUELVE UN OBSERVABLE no el objeto esperado per se.
  *
+ * Todos los comentarios son mios chaval q t piensas q lo ha exo una ia ehhhh aki hay kalidad
+ *
  * En el metodo podemos ver "< >". Esto se llaman genericos, sirven para "prometerle" a Angular el tipo de dato que debe esperar.
  * En este caso espera un array de Productos.
  *
  * Se puede omitir, pero ayuda a detectar errores tempranos y no cuesta nada.
  *
- * Todos los comentarios son mios chaval q t piensas q lo ha exo una ia ehhhh aki hay kalidad
+
  */

@@ -17,7 +17,12 @@
              Sin embargo, por estandares de seguridad y funcionalidad de escape de caracteres nativo de Angular,
              Es mejor y mas conveniente adoptar la metodologia de Arrays cuando se trabajen con variables.
         -->
+        <p>Stock: <span
+          [ngClass]="{rojo: producto.stock <= 0, verde: producto.stock > 5, naranja: producto.stock >= 1 && producto.stock <=5}">{{ producto.stock }}</span> @if (producto.stock == 0) {
+          <span class="rojo"> Agotado</span>
+        }</p>
       </h3>
+
       @if (producto.description) {
         <p>Description: {{ producto.description }}</p>
       }

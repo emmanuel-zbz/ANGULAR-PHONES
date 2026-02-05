@@ -5,6 +5,15 @@
     <h3>{{ p.name }}</h3>
     <h3>{{ p.price | currency }}</h3>
     <h3>{{ p.description }}</h3>
-    <button class="button" (click)="addToCart(p)">Buy</button>
+    <h3>Stock available: <span
+      [ngClass]="{rojo: p.stock <= 0, verde: p.stock > 5, naranja: p.stock >= 1 && p.stock <=5}">{{ p.stock }} </span> @if (p.stock == 0) {
+      <span class="rojo"> Agotado</span>
+    }</h3>
+    <button class="button" (click)="addToCart(p)" [disabled]="p.stock <= 0">@if (p.stock === 0) {
+      agotado
+    } @else {
+      buy
+    }</button>
+
   </div>
 }

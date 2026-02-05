@@ -3,6 +3,7 @@ import {ProductService} from '../services/ProductService';
 import {Product} from '../models/product';
 import {ProductAlerts} from '../product-alerts/product-alerts';
 import {RouterLink} from '@angular/router';
+import {NgClass} from '@angular/common';
 
 
 @Component({
@@ -10,7 +11,8 @@ import {RouterLink} from '@angular/router';
   standalone: true,
   imports: [
     ProductAlerts,
-    RouterLink
+    RouterLink,
+    NgClass
   ],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
@@ -24,6 +26,7 @@ export class ProductList {
 
   //Inyectamos el servicio. Es bastante similar a Spring Boot. Pensarlo de ese modo es útil.
   private productoService = inject(ProductService);
+
 
   //Creamos la variable para manejar los productos. Vamos a inicializarlo como un signal vacío, ya que los datos vienen luego de arrancar la app.
   //Para gestionar los datos lo haremos en el constructor.

@@ -1,14 +1,15 @@
-import {Component, inject, input, numberAttribute, signal, OnInit} from '@angular/core';
+import {Component, inject, input, numberAttribute, signal, OnInit, computed} from '@angular/core';
 import {Product} from '../models/product';
 import {ProductService} from '../services/ProductService';
-import {CurrencyPipe} from '@angular/common';
+import {CurrencyPipe, NgClass} from '@angular/common';
 import {CartService} from '../services/cart-service';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
   imports: [
-    CurrencyPipe
+    CurrencyPipe,
+    NgClass
   ],
   templateUrl: './product-details.html',
   styleUrl: './product-details.css',
@@ -40,12 +41,15 @@ export class ProductDetails {
   product = signal<Product | undefined>(undefined);
 
 
+
+
   private productService = inject(ProductService);
   private cartService = inject(CartService);
 
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);
+    console.log(product);
     window.alert("Tu producto ha sido añadido")
 
   }
@@ -54,6 +58,8 @@ export class ProductDetails {
   ngOnInit() {
 
     this.productService.getProductoById(this.productId()).subscribe((productoEncontrado) => this.product.set(productoEncontrado));
+
+
   }
 
 }
